@@ -4,19 +4,6 @@ from datetime import datetime, timezone
 from app.database import Base
 
 
-class Product(Base):
-    __tablename__ = "products"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), nullable=False)
-    sku = Column(String(100), unique=True, nullable=False, index=True)
-    price = Column(Float, nullable=False)
-    quantity = Column(Integer, nullable=False, default=0)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
-
-    order_items = relationship("OrderItem", back_populates="product")
-
 
 class Customer(Base):
     __tablename__ = "customers"
