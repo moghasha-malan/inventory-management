@@ -69,6 +69,21 @@ class OrderCreate(BaseModel):
 
 
 
+class OrderResponse(BaseModel):
+    id: int
+    customer_id: int
+    total_amount: float
+    status: str
+    created_at: Optional[datetime] = None
+    items: List[OrderItemResponse] = []
+    customer: Optional[CustomerResponse] = None
+
+    model_config = {"from_attributes": True}
+
+
+
+
+
 # Dashboard schema
 class DashboardResponse(BaseModel):
     total_products: int
